@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const { startServer } = require("../src/server");
+
 function parseArgs(argv){
     const args = {clearCache: false, port: null, origin: null};
 
@@ -50,7 +52,7 @@ async function main() {
         console.log("Starting caching proxy with: ");
         console.log("  port =", args.port);
         console.log("  origin =", args.origin);
-        
+        startServer({ port: args.port, origin: args.origin });
     }catch(err){
         console.error("Error: err.message");
         console.error("Usage:");
