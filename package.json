@@ -1,0 +1,22 @@
+{
+  "name": "caching-proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leruva/cache-proxy.git"
+  },
+  "author": "Ruva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leruva/cache-proxy/issues"
+  },
+  "bin":{
+    "caching-proxy": "bin/caching-proxy.js"
+  },
+  "homepage": "https://github.com/Leruva/cache-proxy#readme",
+  "description": ""
+}
