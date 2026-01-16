@@ -14,9 +14,13 @@
   "bugs": {
     "url": "https://github.com/Leruva/cache-proxy/issues"
   },
-  "bin":{
+  "bin": {
     "caching-proxy": "bin/caching-proxy.js"
   },
   "homepage": "https://github.com/Leruva/cache-proxy#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  }
 }
