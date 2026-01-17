@@ -1,4 +1,3 @@
-const { error } = require("console");
 const express = require("express");
 
 function startServer({port,origin}){
@@ -12,7 +11,7 @@ function startServer({port,origin}){
             delete headers.connection;
             delete headers["content-length"];
 
-            const hasBody = !["GET"||"HEAD"].includes(req.method);
+            const hasBody = !["GET","HEAD"].includes(req.method);
             const body = hasBody ? req.body : undefined;
 
             const upstreamResp = await fetch(upstreamURL,{
@@ -23,12 +22,13 @@ function startServer({port,origin}){
             });
             const buf = Buffer.from(await upstreamResp.arrayBuffer());
             res.status(upstreamResp.status);
-            upstreamResp.headers.forEach((name,value)=>{
+            upstreamResp.headers.forEach((value,name)=>{
                 if(name.toLowerCase() === "transfer-encoding")return;
                 res.setHeader(name,value);
             });
 
             res.setHeader("X-Cache", "MISS");
+            return res.send(buf);
         }catch (err){
             res.status(502).json({
                 message: "Bad gateway, failed to reach origin",
@@ -38,7 +38,7 @@ function startServer({port,origin}){
     });
     app.listen(port,()=>{
         console.log(`Caching proxy listening on port : ${port}`);
-        console.log(`forwoaring to origin : ${origin}`);
+        console.log(`forwarding to origin : ${origin}`);
     });
 }
 
